@@ -1,54 +1,90 @@
-/*Name: Yen Lung Chen/ Student No. 2971978
+/**Yen Lung Chen 2971978
  * 
+ * PDS Workbook 3
+ * Linear search
  */
-public class LinearSearch extends Average {
-	//creating a subclass called LinearSearch
-	public LinearSearch(int[] array) {
-		//constructor of LinearSearch by using super() method
-		super(array);	
-	}
-	//method to populate array
-	public void populateArray(int[] array) {
+package workbook03;
+
+
+public class LinearSearch {
+	
+	private int [] myList = {23,45,66,77,34,56,90,33,98,11}; //declare and assign a private integer array 
+
+	/**
+	 * constructor
+	 */
+	public LinearSearch() {
 		
-		for (int i=0; i<array.length;i++) {
-			//use random method to assign array 
-			array[i]=(int)(Math.random()*100);
-			System.out.print(array[i]+" ");
+		
+	}//constructor
+	
+	public int[] getMyList() { //the getter of the data in the array
+		
+		return myList;
+		
+	}//getMyList()
+	
+	/*
+	 *If you print any object, java compiler internally invokes the toString() method on the object.
+	 *So overriding the toString() method, returns the desired output, 
+	 *it can be the state of an object etc. depends on your implementation.
+	 */
+	public String toString() {
+		
+		StringBuffer sb = new StringBuffer(); //create a string buffer 
+		
+		for(int i :this.myList) { //enhanced for loop to iterate through the elements of a collection or array
+			
+			sb.append(i).append(" "); //append each elements in sequence with space
+			
+		}
+			
+		return sb.toString(); //return the string
+
+	}//toString()
+	
+	public int search(int x) { //search algorithm
+		
+		int i = 0; //initiate a variable
+		
+		/*
+		 * The condition in the while loop is to filter out the value to be found
+		 */
+		while(i<myList.length&&myList[i]!=x) { 
+			
+			i++;
+			
+		}//while()
+		
+		if(i==myList.length) { //The condition indicate that the argument is not found in the array 
+			
+			System.out.println("The value: "+x+" is NOT found in the array with value: "+toString());
+			
+			return i=-1; //return value -1, an invalid index in a array
 		}
 		
-	}
-	//method to do linear search
-	public int searchArray(int [] array, int key) {
-		
-		for(int j=0;j<array.length;j++) {
+		else { //The condition indicate that the argument is found in the array
 			
-			if(key==array[j]) {
-				
-				return j;
-			}//if
-					
-		}//for loop
+			System.out.println("The value: "+x+" is found in the array with value: "+toString());
+			System.out.println(x+" is located in the index of "+i );
+			
+			return i;
+		}
 		
-		return -1;
-		
-	}//searchArray()
-	
-		
-	public static void main (String[] args) {
-		
-		int [] searchA = new int [20];
-		
-		LinearSearch a = new LinearSearch(searchA);
-		
-		a.populateArray(searchA);
-		a.searchArray(searchA, 50);
-		
-		System.out.println("\n"+"The result: "+a.searchArray(searchA, 50));
-		
-		
-		
-	}
-	
+	}//search()
 	
 
-}
+	
+	public static void main(String[] args) {
+		
+		LinearSearch a = new LinearSearch();
+		a.search(2);
+		a.search(66);
+		
+		LinearSearch b = new LinearSearch();
+		b.search(90);
+		b.search(23);
+
+	}//main()
+
+}//class()
